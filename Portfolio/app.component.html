@@ -1,0 +1,90 @@
+<!--
+  author: xuan yang
+-->
+<div>
+  <nav class="header">
+    <h1 class="noselect" (click)="return()" id="title-text">
+      Xuan's Blog
+    </h1>
+    
+    
+    <!--
+      top right menu
+    -->
+    <ul class = "info_menu">
+      
+      <li class = "btn" ><a href="mailto:yang709@purdue.edu"><button>邮箱(Email): yang709@purdue.edu</button></a></li>
+      <li class = "btn"><a href="http://www.github.com/yang709" target="_blank"><button>Github</button></a></li>
+      <li class = "btn"><a href="http://www.linkedin.com/in/zxcv-xuan" target="_blank"><button>LinkedIn</button></a></li>
+      <li class = "btn"><a href="/assets/documents/简历.pdf" target="_blank"><button>简历(Resume)</button></a>
+        <!--
+        <div class = "drop_content">
+          <a href="/assets/documents/简历.pdf" target="_blank">中文</a>
+          <a href="/assets/documents/Resume.pdf" target="_blank">English</a>
+        </div>
+      -->
+      </li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <!--
+      left navigation menu
+    -->
+    <div class="leftBar" [ngClass]="openMenu ? '' : 'close'">
+      <div class="toggle_menu" (click)="openMenu = !openMenu" >
+        <span class="arrow--l-r" [ngClass]="openMenu ? 'left' : 'right'"><span></span><span></span><span></span><span></span><span></span></span>
+      </div>
+      
+      <ul class="menu">
+        <li style="text-align: center; border-bottom: 1px solid black;">
+          <h1 class="noselect" style="font-size: 18px; padding:10px;">菜单 Menu</h1> 
+        </li>
+        <li class="btn"><button (click)="return()">关于本页 About</button></li>
+        <li class="btn"><button (click)="toggleSubMenu('subMenu1')">学习笔记 Notes</button>
+          <ul class="subMenu" id="subMenu1">
+            <li class="btn">
+              <button (click)="filepath = './assets/files/testhtml.htm'">note1</button>
+            </li>
+            <li class="btn">
+              <button>note2</button>
+            </li>
+          </ul>
+        </li>
+        <li class="btn"><a><button (click)="toggleSubMenu('subMenu2')">其它内容 Other</button></a>
+          <ul class="subMenu" id="subMenu2">
+            <li class="btn">
+              <button (click)="filepath = './assets/files/Learning Notes/'">Q_Learning note</button>
+            </li>
+            <li class="btn">
+              <button (click)="filepath = './assets/files/Learning Notes/'">Neural Network note</button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+        <!--
+        <button mat-button (click)="return()">Return</button>
+            <ul>
+              <li *ngFor="let file of files">
+                <a *ngIf="file.isD; else isfile" (click)="getDir(file.name)"href="#" style="color:azure">[{{file.name}}]</a>
+                <ng-template #isfile>
+                    <a (click)="getFile(file.name)"href="#" style="color:lightcyan">{{file.name.substring(0, file.name.lastIndexOf("."))}}</a>
+                </ng-template>
+              </li>
+            </ul>
+        -->
+    </div>
+
+    <!--
+      main content
+    -->
+    <div class="main" [ngClass]="openMenu ? '' : 'close'">
+      <div id="paper">
+          <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(filepath)" width="100%" height="100%">
+            <p>Your browser does not support iframe, please try another browser.</p>
+            <p>很遗憾，这个浏览器不支持iframe，请更换浏览器浏览本页。</p>
+          </iframe>
+      </div>
+    </div>
+  </div>
+</div>
